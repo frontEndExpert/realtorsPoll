@@ -17,7 +17,7 @@ export async function getPollInsight(choice: PollChoiceId, label: string): Promi
   Keep the tone encouraging, professional, and targeted at high-performing Real Estate agents.`;
 
   const response = await ai.models.generateContent({
-    model: "gemini-2.0-flash-exp",
+    model: "gemini-1.5-flash",
     contents: prompt,
     config: {
       responseMimeType: "application/json",
