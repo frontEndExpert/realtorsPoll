@@ -16,27 +16,30 @@ export async function getPollInsight(choice: PollChoiceId, label: string): Promi
   
   Keep the tone encouraging, professional, and targeted at high-performing Real Estate agents.`;
 
-  const response = await ai.models.generateContent({
-    model: "gemini-1.5-flash",
-    contents: prompt,
-    config: {
-      responseMimeType: "application/json",
-      responseSchema: {
-        type: Type.OBJECT,
-        properties: {
-          title: { type: Type.STRING },
-          suggestion: { type: Type.STRING },
-          toolReference: { type: Type.STRING }
-        },
-        required: ["title", "suggestion", "toolReference"]
-      }
-    }
-  });
-
   try {
-    return JSON.parse(response.text);
-  } catch (e) {
-    console.error("Failed to parse AI response", e);
+    const response = await ai.models.generateContent({
+      model: "gemini-1.5-flash",
+      contents: prompt,
+      config: {
+        responseMimeType: "application/json",
+        responseSchema: {
+          type: Type.OBJECT,
+          properties: {
+            title: { type: Type.STRING },
+            suggestion: { type: Type.STRING },
+            toolReference: { type: Type.STRING }
+          },
+          required: ["title", "suggestion", "toolReference"]
+        }
+      }
+    });
+
+    const text = response.text;
+    return JSON.parse(text) as AIInsight;
+
+  } catch (error: any) {
+    console.error("Gemini API Error details:", error);
+    if (error.message) console.error("Message:", error.message);
     return {
       title: "Optimization Strategy",
       suggestion: "Consistency is key in lead management. Focus on creating a repeatable system that handles the heavy lifting.",
