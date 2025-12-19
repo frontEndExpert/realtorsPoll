@@ -50,22 +50,6 @@ const App: React.FC = () => {
     }
   }, [poll]);
 
-  const copyPostToClipboard = () => {
-    const text = `Realtors, quick poll on lead management:
-What's your #1 bottleneck in turning leads into appointments?
-
-A) Time Drain – Spending too many hours manually texting/calling.
-B) Lost Leads – They go cold because follow-up isn't instant or consistent.
-C) Bad Fit – Wasting time on unqualified leads who aren't serious.
-D) I've got this handled – My system works well.
-
-Comment below if you chose A, B, or C and want to see a tool that fixes it!`;
-
-    navigator.clipboard.writeText(text);
-    setCopyStatus('copied');
-    setTimeout(() => setCopyStatus('idle'), 2000);
-  };
-
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col">
       <Header />
