@@ -1,0 +1,36 @@
+
+import React, { useState } from 'react';
+import PublishModal from './PublishModal';
+
+const Header: React.FC = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  return (
+    <>
+      <header className="bg-white border-b border-gray-200 sticky top-0 z-40">
+        <div className="max-w-xl mx-auto px-4 py-3 flex items-center justify-between">
+          <div className="flex items-center space-x-2">
+            <div className="bg-blue-600 p-1.5 rounded-lg">
+              <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+              </svg>
+            </div>
+            <span className="font-bold text-gray-800 text-xl tracking-tight">RealtorPoll</span>
+          </div>
+          <button 
+            onClick={() => setIsModalOpen(true)}
+            className="flex items-center space-x-2 bg-blue-50 text-blue-600 px-4 py-1.5 rounded-full text-sm font-bold hover:bg-blue-100 transition-colors border border-blue-200"
+          >
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+            </svg>
+            <span>Go Live</span>
+          </button>
+        </div>
+      </header>
+      <PublishModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+    </>
+  );
+};
+
+export default Header;
